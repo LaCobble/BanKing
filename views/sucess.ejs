@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('./components/headTag') -%> <!-- Inclut le contenu du fichier "./components/headTag" -->
+    <style>
+        .far,
+        .fas {
+            font-size: 8rem;
+        }
+    </style>
+</head>
+<body>
+    <%- include('./components/navbar') -%> <!-- Inclut le contenu du fichier "./components/navbar" -->
+    
+    <% if( value=="" ){%>
+        <div class="alert alert-danger text-center " role="alert">
+            <%= errmsg %> <!-- Affiche un message d'erreur -->
+        </div>
+    <%} %>
+
+    <% if(msg !="" ) {%>
+        <div class="alert alert-success text-center " role="alert">
+            <%= msg %> <!-- Affiche un message de réussite -->
+        </div>
+    <%} %>
+
+    <!-- icon -->
+    <div class="container my-3 d-flex justify-content-center">
+        <% if(value !="" ){%>
+            <i class="far fa-check-square"></i> <!-- Icône de case à cocher -->
+        <%}else{%>
+            <i class="fas fa-times"></i> <!-- Icône de croix -->
+        <%} %>
+    </div>
+
+    <div class="container my-5  d-flex justify-content-center">
+        <div class="container my-5  d-flex justify-content-center"> 
+            <a href="/" class="btn btn-dark mx-2"> Home </a> <!-- Bouton "Home" -->
+            <% if( value=="" ){%>
+                <a href="/data" class="btn btn-dark mx-2"> Retry </a> <!-- Bouton "Retry" -->
+            <%} else{%>
+                <a href="/data" class="btn btn-dark mx-2"> View All User </a> <!-- Bouton "View All User" -->
+            <%} %>
+            <% if( value !="" ){%>
+                <a href="/history" class="btn btn-dark mx-2"> Transaction History </a> <!-- Bouton "Transaction History" -->
+            <%} %>
+        </div>
+    </div>
+
+    <%- include('./components/bootstrapScript') -%> <!-- Inclut le contenu du fichier "./components/bootstrapScript" -->
+</body>
+</html>

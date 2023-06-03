@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('./components/headTag') -%> <!-- Inclut le contenu du fichier "./components/headTag" -->
+</head>
+<body>
+    <div class="container mt-2">
+        <button onclick="location.href='/data';" class="button-exit" role="button">Back</button> <!-- Bouton de retour avec la classe de style "button-exit" -->
+    </div>  
+    
+    <div class="info">
+        <div class="container text-center p-2 mt-3" style="background-color: #36395A;">
+            <h3 class="text-light fw-4">Sender Details</h3> <!-- Titre de la section "Sender Details" -->
+        </div>
+        <!-- Sender Details -->
+        <div class="container mt-2 custom_view">
+            <div class="container mt-4 custom_view_left text-center">
+                <i class="far fa-user" style="font-size: 7rem;"></i> <!-- Icône d'utilisateur -->
+            
+            </div>
+            <div class="container mt-4 custom_view_right">
+            <% data.forEach((e) => {%> <!-- Boucle sur les données -->
+                <h4>Name : <%= e.name %></h4> <!-- Affiche le nom de l'expéditeur -->
+                <h4>Email : <%= e.email %></h4> <!-- Affiche l'e-mail de l'expéditeur -->
+                <h4>Mobile : <%= e.contact %></h4> <!-- Affiche le contact de l'expéditeur -->
+                <h4>Balence (€) : <%= e.amount %> </h4> <!-- Affiche le solde de l'expéditeur -->
+                
+            <%}) %>  
+            </div>
+            
+        </div>
+        <!-- Reciver -->
+        <div class="container text-center p-2 mt-3" style="background-color: #36395A;">
+            <h3 class="text-light fw-4">Reciver Details</h3> <!-- Titre de la section "Reciver Details" -->
+        </div>
+        <div class="container">
+            <form action="/transfer" method="POST" > <!-- Formulaire pour effectuer un transfert -->
+                <div class="form-group mt-3">
+                <label for="exampleInputEmail1">From</label>
+                <% data.forEach((e) => {%> <!-- Boucle sur les données -->
+                    <input type="hidden" name="SenderID" value="<%= e._id %>"> <!-- Champ masqué pour l'ID de l'expéditeur -->
+                    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="SenderName" placeholder="Enter User Name" readonly value="<%= e.name %>"> <!-- Champ de texte en lecture seule pour le nom de l'expéditeur -->
+                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="SenderEmail" placeholder="Enter User Name" readonly value="<%= e.email %>"> <!-- Champ de texte en lecture seule pour l'e-mail de l'expéditeur -->
+                    
+                    <%}) %>
+
+                
+                
+                </div>
+                <div class="form-group  mt-3">
+                <label for="exampleInputEmail1">To</label>
+                <select class="form-select" name="reciverName" required> <!-- Sélecteur pour le nom du destinataire -->
+                    <option selected>Select Reciver Name</option>
+                    <% records.forEach((e)=>{%> <!-- Boucle sur les enregistrements -->
+                    <option> <%= e.name %></option> <!-- Option pour le nom du destinataire -->
+                    <%}) %>
+                
+                </select>
+                
+                </div>
+                <div class="form-group  mt-3">
+                    <select class="form-select"name="reciverEmail" required> <!-- Sélecteur pour l'e-mail du destinataire -->
+                    <option selected>Select Reciver Email</option>
+                    <% records.forEach((e)=>{%> <!-- Boucle sur les enregistrements -->
+                    <option> <%= e.email %> </option> <!-- Option pour l'e-mail du destinataire -->
+                    <%}) %>
+                
+                </select>
+            
+                </div>
+                <div class="form-group  mt-3">
+                    <label for="exampleInputEmail1">Amount (€)</label>
+                    <input type="Amount" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="transferAmount" placeholder="Enter Amount" required> <!-- Champ pour le montant du transfert -->
+            
+                <button type="submit" class="btn mt-3 text-center" style="background-color: #36395A;color: white;">Submit</button> <!-- Bouton de soumission -->
+            </form>
+        </div>
+    </div>
+    <%- include('./components/bootstrapScript') -%> <!-- Inclut le contenu du fichier "./components/bootstrapScript" -->
+</body>
+</html>
+
+<style>
+    /* Styles personnalisés */
+
+    .custom_view{
+        display: flex;
+    }
+    .custom_view_left{
+        flex-basis: 50%;
+    }
+    .custom_view_right{
+        flex-basis: 50%;
+    }
+    #recAmountId:in-range {
+        background-color: rgb(255, 255, 255);
+    }
+    #recAmountId:out-of-range {
+        background-color: rgb(255 0 0 / 18%);
+        color: black;
+    }
+    #recAmountId:in-range+label::after {
+        content: "";
+    }
+    #recAmountId:out-of-range+label::after {
+        content: "Please try with lower amount";
+        font-size: 14px;
+        position: relative;
+        color: #f10202;
+        text-shadow: 1px 1px black;
+    }
+
+</style>

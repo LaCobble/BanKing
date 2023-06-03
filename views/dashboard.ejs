@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <%- include('./components/headTag') -%> <!-- Inclut le contenu du fichier "./components/headTag" -->
+   <link rel="stylesheet" href="./CSS/style.css"> <!-- Importe la feuille de style CSS "./CSS/style.css" -->
+</head>
+<header class="header">
+    <h1 class="logo"><a href="https://github.com/LaCobble"><img src="IMG/banking.png" alt="logo" width="60px" height="60px"></a></h1>
+      <ul class="main-nav">
+          <li><a class="nav-link active" aria-current="page" href="index.html">Home</a></li>
+          <li><a class="nav-link" href="/chat">Chat</a></li>
+          <li><a class="nav-link" href="/logout">Logout <i class="fa fa-sign-out" aria-hidden="true"></i></a></li>
+      </ul>
+  </header> 
+
+	<div class="d-none d-md-block">
+		<p class="Title">
+		  <span>
+			Dashboard Admin
+		  </span>
+		</p>
+	</div>
+
+  <div class="bg-img">
+    <div class="container my-4 custom_card">
+
+      <div class="all_customers card bg-dark" onclick="location.href='/adduser';">
+        <div class="icon">
+          <i class="fas fa-user-plus  text-light"></i>
+        </div>
+        <div class="icon_link text-center" style="background-color: #f06a25;">
+          <a href="/adduser" class="btn cus_in_btn text-dark"> Add User </a>
+        </div>
+      </div>
+
+      <!-- All Customer Card -->
+      <div class="all_customers card bg-dark" onclick="location.href='/data';">
+        <div class="icon">
+          <i class="fas fa-users text-light"></i>
+        </div>
+        <div class="icon_link text-center" style="background-color: #f06a25;">
+          <a href="/data" class="btn cus_in_btn text-dark"> All Customers </a>
+        </div>
+      </div>
+
+      <!-- History Card -->
+      <div class="all_customers card bg-dark" onclick="location.href='/history';">
+        <div class="icon">
+          <i class="fas fa-exchange-alt text-light"></i>
+        </div>
+        <div class="icon_link text-center" style="background-color: #f06a25;">
+          <a href="/history" class="btn cus_in_btn text-dark"> Transfer History </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+<%- include('./components/bootstrapScript') -%> <!-- Inclut le contenu du fichier "./components/bootstrapScript" -->
+
+</body>
+</html>

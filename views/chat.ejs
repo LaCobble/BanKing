@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <%- include('./components/headTag') -%> <!-- Inclut le contenu du fichier "./components/headTag" -->
+   <link rel="stylesheet" href="./CSS/chatAdmin.css"> <!-- Importe la feuille de style CSS "./CSS/chatAdmin.css" -->
+</head>
+<body>
+  <header class="header">
+    <h1 class="logo"><a href="https://github.com/LaCobble"><img src="IMG/banking.png" alt="logo" width="60px" height="60px"></a></h1>
+    <ul class="main-nav">
+      <li><a class="nav-link active" aria-current="page" href="/">Home</a></li>
+      <li><a class="nav-link active" aria-current="page" href="/dashboard">Dashboard</a></li>
+      <li><a class="nav-link" href="/logout">Logout <i class="fa fa-sign-out" aria-hidden="true"></i></a></li>
+    </ul>
+  </header>
+
+  <div class="main">
+    <div class="container">
+      <ul id="messages"></ul>
+    </div>
+    <div class="chat-form">
+      <div class="container">
+        <form class="form-horizontal" id="chat-form">
+          <div class="row">
+            <div class="col-sm-10 col-xs-8">
+              <input type="text" class="form-control" id="message-input" autocomplete="off" placeholder="Message" />
+            </div>
+            <div class="col-sm-2 col-xs-4">
+              <button type="submit" class="btn btn-success btn-block">Send</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <%- include('./components/bootstrapScript') -%> <!-- Inclut le contenu du fichier "./components/bootstrapScript" -->
+  <script src="/socket.io/socket.io.js"></script> <!-- Inclut le script du socket.io pour la communication en temps réel -->
+  <script>
+    const socket = io();
+
+    const chatForm = document.getElementById('chat-form');
+    const messageInput = document.getElementById('message-input');
+    const messagesList = document.getElementById('messages');
+
+    chatForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const message = messageInput.value;
+      if (message) {
+        socket.emit('chat message', { sender: 'KingAdmin', message: message });
+        messageInput.value = '';
+      }
+    });
+
+    socket.on('chat message', (data) => {
+      displayMessage(`${data.sender} : ${data.message}`);
+    });
+
+    function displayMessage(message) {
+      const messageItem = document.createElement('li');
+      messageItem.textContent = message;
+      messagesList.appendChild(messageItem);
+
+      // Si c'est ton message, il est de couleur verte ; sinon, il est de couleur bleue
+      if (message.includes('KingAdmin')) {
+        messageItem.classList.add('me');
+      } else {
+        messageItem.classList.add('other');
+      }
+
+      // Supprimer les anciens messages pour éviter les doublons
+      if (messagesList.children.length > 30) {
+        messagesList.removeChild(messagesList.children[0]);
+      }
+    }
+  </script>
+
+</body>
+</html>

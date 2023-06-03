@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <%- include('./components/headTag') -%> <!-- Inclut le contenu du fichier "./components/headTag" -->
+   <link rel="stylesheet" href="./CSS/form.css"> <!-- Importe la feuille de style CSS "./CSS/form.css" -->
+</head>
+<body>
+    <%- include('./components/navbar') -%> <!-- Inclut le contenu du fichier "./components/navbar" -->
+
+<div class="container mt-5">
+
+     <!-- - Alert msg -->
+     <% if(msg !="" ){%>
+      <div class="alert alert-success text-center " role="alert" id="addMsg">
+          <%=msg %>
+      </div>
+      <%} %>
+
+  <form id="contact" action="/adduser" method="post">
+    <h3>Add User Form</h3>
+    <fieldset>
+      <input placeholder="The name" type="text" name="userName" tabindex="1" required autofocus>
+    </fieldset>
+    <fieldset>
+      <input placeholder="The Email Address" type="email" name="userEmail" tabindex="2" required>
+    </fieldset>
+    <fieldset>
+      <input placeholder="The Phone Number" type="tel" name="userNumber" tabindex="3" required>
+    </fieldset>
+    <fieldset>
+      <input placeholder="The Amount (€)" type="number" name="userAmount" tabindex="4" required>
+    </fieldset>
+
+    <fieldset>
+      <button name="submit" type="submit" id="contact-submit" data-submit="...Sending">Submit</button>
+    </fieldset>
+  </form>
+
+  <div class="container mt-2">
+    <button onclick="location.href='/';" class="button-exit" role="button">Back</button>
+  </div>
+
+</div>
+
+    <%- include('./components/bootstrapScript') -%> <!-- Inclut le contenu du fichier "./components/bootstrapScript" -->
+    <script>
+        let alert = document.getElementById('addMsg');
+    setTimeout(() => {
+        alert.style.visibility = "hidden"
+    }, 2000)
+    </script>
+</body>
+</html>
