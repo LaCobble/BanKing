@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('./components/headTag') -%> <!-- Inclut le contenu du fichier "./components/headTag" -->
+    <link rel="stylesheet" href="./CSS/table.css"> <!-- Importe la feuille de style CSS "./CSS/table.css" -->
+</head>
+<body>
+  <%- include('./components/navbar') -%> <!-- Inclut le contenu du fichier "./components/navbar" -->
+
+<div class="title">
+  <h1>All Transactions</h1>
+</div>
+
+<table class="container">
+    <thead>
+      <tr>
+        <th scope="col"><h1>Sender</h1></th>
+        <th scope="col"><h1>Receiver</h1></th>
+        <th scope="col"><h1>Amount (€)</h1></th>
+        <th scope="col"><h1>Date</h1></th>
+        <th scope="col"><h1>Delete</h1></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% if(data.length>0){%>
+        <% data.forEach((e) => {%>
+          <tr>
+            <td><%= e.sEmail %></td>
+            <td><%= e.rEmail %></td>
+            <td><%= e.amount  %></td>
+            <td><%= e.date  %></td>
+            <td>
+              <a href="/remove/<%=e._id %>" class="btn btn-danger">
+              <i class="fa fa-minus"></i>
+            </a>
+            </td>
+          </tr>
+          <%}) %>
+        <%}else{%>
+          <tr class="Warning">
+            <td>
+                No records Found !
+            </td>
+          </tr>
+          <%} %>
+
+    </tbody>
+  </table>
+
+  <div class="container mt-2">
+    <button onclick="location.href='/';" class="button-exit" role="button">Back</button>
+  </div>
+
+  <%- include('./components/bootstrapScript') -%> <!-- Inclut le contenu du fichier "./components/bootstrapScript" -->
+</body>
+</html>

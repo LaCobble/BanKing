@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('./components/headTag') -%> <!-- Inclut le contenu du fichier "./components/headTag" -->
+    <link rel="stylesheet" href="./CSS/table.css"> <!-- Lien vers votre propre fichier CSS -->
+
+</head>
+<body>
+    <%- include('./components/navbar') -%> <!-- Inclut le contenu du fichier "./components/navbar" -->
+      
+<div class="title">
+   <h1>View All Customer</h1> <!-- Titre de la section -->
+ </div>
+
+  <table class="container"> <!-- Définit une table avec la classe "container" -->
+    <thead>
+      <tr>
+        <th scope="col"><h1>Name</h1></th> <!-- En-tête de colonne avec le titre "Name" -->
+        <th scope="col"><h1>Email</h1></th> <!-- En-tête de colonne avec le titre "Email" -->
+        <th scope="col"><h1>Contact</h1></th> <!-- En-tête de colonne avec le titre "Contact" -->
+        <th scope="col"><h1>Balence (€)</h1></th> <!-- En-tête de colonne avec le titre "Balence (€)" -->
+        <th scope="col"><h1>Action</h1></th> <!-- En-tête de colonne avec le titre "Action" -->
+        <th scope="col"><h1>Remove</h1></th> <!-- En-tête de colonne avec le titre "Remove" -->
+      </tr>
+    </thead>
+    <tbody>
+      <% if(data.length>0){%> <!-- Vérifie si la longueur des données est supérieure à 0 -->
+        <% data.forEach((e) => {%> <!-- Boucle sur les données -->
+          <tr>
+            <td><%= e.name %></td> <!-- Affiche la valeur de la propriété "name" -->
+            <td><%= e.email %></td> <!-- Affiche la valeur de la propriété "email" -->
+            <td><%= e.contact  %></td> <!-- Affiche la valeur de la propriété "contact" -->
+            <td><%= e.amount  %></td> <!-- Affiche la valeur de la propriété "amount" -->
+            <td>
+              <a href="/view/<%=e._id %>" class="btn btn-primary">View & Transfer</a> <!-- Crée un lien vers "/view/{id}" avec la classe de style "btn btn-primary" -->
+            </td>
+            <td>
+              <a href="/delete/<%=e._id %>"" class="btn btn-danger" > <!-- Crée un lien vers "/delete/{id}" avec la classe de style "btn btn-danger" -->
+              <i class="fa fa-trash"></i> <!-- Icône de corbeille -->
+            </a>
+            </td>
+          </tr>
+                        
+          <%}) %>        
+        
+        <%}else{%>
+          <tr class="Warning">
+            <td>
+              
+                No records Found! <!-- Message affiché en cas de données absentes -->
+              
+            </td>
+          </tr>
+        
+          
+          <%} %>
+    
+    </tbody>
+  </table>
+</div>
+
+    <div class="container mt-2">
+      <button onclick="location.href='/';" class="button-exit" role="button">Back</button> <!-- Bouton de retour avec la classe de style "button-exit" -->
+    </div>            
+
+    <%- include('./components/bootstrapScript') -%> <!-- Inclut le contenu du fichier "./components/bootstrapScript" -->
+</body>
+</html>
