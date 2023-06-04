@@ -1,5 +1,5 @@
 
-<img src="public/IMG/banking.png" width=50% height=50%>
+<img src="public/IMG/banking.png" width=30% height=30% align=center>
 
 This project is a...
 
