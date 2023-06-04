@@ -1,4 +1,5 @@
-![BanKing](public/IMG/banking.png)
+
+<img src="public/IMG/banking.png" width=50% height=50%>
 
 This project is a...
 
