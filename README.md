@@ -1,11 +1,19 @@
-# BanKing
+![BanKing](public/IMG/banking.png)
 
-**basic banking system application**
+This project is a...
 
-### Tech stacks
+## Dependencies
 
-- Frontend tools: HTML, CSS, JavaScript & Bootstrap
+//
 
-- Backend tools: NodeJS & ExpressJS 
+## Installation
 
-- Database: MongoDB
+//
+
+## Usage
+
+//
+
+## License
+
+[MIT](https://choosealicense.com/licenses/mit/)
