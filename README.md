@@ -36,9 +36,7 @@ Update the necessary configuration parameters such as the database link.
 Save the changes.
 Start the application:
 
-bash
-Copy code
-npm start
+```npm start```
 
 ## Access the application in your browser:
 Open your browser and navigate to http://localhost:5000 (or another specified port if configured differently).
