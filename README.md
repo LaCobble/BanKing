@@ -75,4 +75,6 @@ Bootstrap CSS: A popular CSS framework for building responsive and mobile-first 
 Font Awesome: A library of scalable vector icons that can be customized and styled with CSS.
 Normalize.css: A CSS file that normalizes styles across different browsers.
 Socket.IO: A JavaScript library for real-time communication between the browser and the server.
-Note: This README provides an overview of the banking management web application. For detailed code and implementation, please refer to the project files.
+
+## Note: 
+This README provides an overview of the banking management web application. For detailed code and implementation, please refer to the project files.
