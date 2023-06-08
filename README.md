@@ -78,3 +78,7 @@ Socket.IO: A JavaScript library for real-time communication between the browser 
 
 ## Note
 This README provides an overview of the banking management web application. For detailed code and implementation, please refer to the project files.
+
+## Contact
+
+Thank you for using the BanKing application! If you have any questions or need further assistance, please feel free to contact us.
