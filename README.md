@@ -22,12 +22,26 @@ BanKing is a server-rendered web application built with Node.js, Express and EJS
 
 ## Screenshots
 
-<p>
-  <img src="docs/images/home.webp" alt="Home page" width="49%">
-  <img src="docs/images/add-customer.webp" alt="Add customer form" width="49%">
-</p>
+<table>
+  <tr>
+    <td width="50%"><img src="docs/images/home.webp" alt="Home page"><br><sub>Home page</sub></td>
+    <td width="50%"><img src="docs/images/add-customer.webp" alt="Add a customer"><br><sub>Add a customer</sub></td>
+  </tr>
+  <tr>
+    <td width="50%"><img src="docs/images/customers.webp" alt="Customer list with balances"><br><sub>Customer list with balances</sub></td>
+    <td width="50%"><img src="docs/images/transfer.webp" alt="Transfer between two customers"><br><sub>Transfer between two customers</sub></td>
+  </tr>
+  <tr>
+    <td width="50%"><img src="docs/images/history.webp" alt="Transfer history"><br><sub>Transfer history</sub></td>
+    <td width="50%"><img src="docs/images/support-chat.webp" alt="Live support chat (Socket.IO)"><br><sub>Live support chat (Socket.IO)</sub></td>
+  </tr>
+  <tr>
+    <td width="50%"><img src="docs/images/admin-login.webp" alt="Administrator login"><br><sub>Administrator login</sub></td>
+    <td width="50%"><img src="docs/images/admin-dashboard.webp" alt="Administrator dashboard"><br><sub>Administrator dashboard</sub></td>
+  </tr>
+</table>
 
-<sub>Rendered locally from this repository (October 2026).</sub>
+<sub>Captured with headless Chrome from a local run (October 2026), on a throwaway MongoDB filled with fictitious customers; the two transfers were made through the UI.</sub>
 
 ## Prerequisites
 
