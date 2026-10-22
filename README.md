@@ -1,84 +1,89 @@
+<p align="center"><img src="public/IMG/banking.png" alt="BanKing logo" width="160"></p>
+
 # BanKing
 
-<p align="center">
-<img src="public/IMG/banking.png" width=40% height=40%>
+A small full-stack banking back office: manage customers, transfer money between them and chat with support in real time.
+
+[![CI](https://github.com/LaCobble/BanKing/actions/workflows/ci.yml/badge.svg)](https://github.com/LaCobble/BanKing/actions/workflows/ci.yml)
+![Version](https://img.shields.io/badge/version-1.0.0-blue)
+![Node.js](https://img.shields.io/badge/Node.js-Express%20%2B%20EJS-339933?logo=nodedotjs&logoColor=white)
+![MongoDB](https://img.shields.io/badge/MongoDB-Mongoose-47A248?logo=mongodb&logoColor=white)
+[![License: MIT](https://img.shields.io/badge/license-MIT-green)](LICENSE)
+
+## What it does
+
+BanKing is a server-rendered web application built with Node.js, Express and EJS on top of MongoDB. It exposes CRUD operations on bank customers through a responsive Bootstrap interface:
+
+- **Add customer**: name, e-mail, phone number and initial balance.
+- **All customers**: list, view details, delete.
+- **Transfers**: move money from one customer to another; every transfer is stored in a **transfer history**.
+- **Administrator login** and dashboard.
+- **Support chat**: a floating chat button connects visitors to an administrator in real time with Socket.IO.
+
+## Screenshots
+
+<p>
+  <img src="docs/images/home.webp" alt="Home page" width="49%">
+  <img src="docs/images/add-customer.webp" alt="Add customer form" width="49%">
 </p>
 
-## Banking Management Web Application
+<sub>Rendered locally from this repository (October 2026).</sub>
 
-This project aims to develop a full-stack web application for banking management. The back-end will provide CRUD (Create, Read, Update, Delete) operations on a database using Node.js and Express technologies. The application will have a user-friendly interface for interacting with these CRUD functionalities. Additionally, the application will be responsive, adapting to various devices such as desktops, tablets, and smartphones to ensure an optimal user experience.
+## Prerequisites
 
-## Technologies Used
+- Node.js 18 or later (the CI uses Node 20) and npm
+- A MongoDB database (local `mongod`, Docker or a hosted cluster)
 
-* Node.js: Node.js is a server-side runtime environment based on the Google Chrome V8 JavaScript engine. It allows executing JavaScript code outside the browser.
-* Express: Express is a web framework for Node.js that simplifies the creation of robust and scalable web applications. It provides features and tools for route handling, request and response management, middleware creation, etc.
-* EJS (Embedded JavaScript): EJS is a template engine that generates server-side HTML code using special tags. It allows dynamically inserting data and executing JavaScript functions within the generated HTML code.
-* API REST (Representational State Transfer): REST architecture is a style of architecture for creating web services. In this project, we use a RESTful API to expose CRUD functionalities on our database. The API defines routes corresponding to CRUD operations (GET, POST, PUT, DELETE) and returns data in JSON format.
+## Getting started
 
-## Installation
-To run the project locally, follow these steps:
-
-Clone the repository:
-```
-git clone https://github.com/La_Cobble/BanKing.git
-```
-Install the dependencies:
-```
-cd your-repo
-npm install
+```bash
+git clone https://github.com/LaCobble/BanKing.git
+cd BanKing
+npm ci
+cp .env.example .env    # then set DB_URL to your MongoDB connection string
+npm start               # or `npm run dev` for auto-reload with nodemon
 ```
 
-## Set up the database connection:
+Open http://localhost:5000 (or the `PORT` you set).
 
-Open the project in your preferred code editor.
-Create .env
-Update the necessary configuration parameters such as the database link.
-Save the changes.
-Start the application:
+| Variable | Purpose | Default |
+| --- | --- | --- |
+| `DB_URL` | MongoDB connection string | none (required) |
+| `PORT` | HTTP port | `5000` |
 
-```npm start```
+There is no automated test suite; the CI installs the dependencies, checks the JavaScript syntax, loads every server module and scans for secrets.
 
-## Access the application in your browser:
-Open your browser and navigate to http://localhost:5000 (or another specified port if configured differently).
-You should see the banking management application up and running.
+## Project structure
 
-## Usage
-The banking management web application provides the following features:
+```
+BanKing/
+├── index.js            # Express + Socket.IO server
+├── database/db.js      # MongoDB connection (Mongoose)
+├── model/              # Mongoose models: customers, admins, transfer history
+├── router/index.js     # All routes (customers, transfers, history, login, dashboard, chat)
+├── views/              # EJS templates and shared components
+└── public/             # Static assets: CSS, images, landing page, chat client script
+```
 
-Home: Displays the main page of the application with options to add users, view users, and access the transaction history.
-Add User: Allows adding a new user to the system. It collects necessary details such as name, account number, and balance.
-View User: Displays a list of all users in the system. It provides information about each user, such as their name, account number, and current balance.
-Transfer History: Shows a history of transactions, including details like sender, receiver, and transaction amount.
-Login: Provides an option to log in as an administrator and access additional administrative features.
-Additional Features
-Chat Support
-The application includes a chat support feature implemented using Socket.IO. It allows users to interact with a support agent in real-time. The chat support is accessible via a floating chat button, and users can ask questions or seek assistance related to the banking services provided.
+## What it demonstrates
+
+- Building a REST-style CRUD back end with Express and Mongoose.
+- Server-side rendering with EJS templates and reusable partials.
+- Real-time messaging with Socket.IO.
+- Configuration through environment variables (`dotenv`).
+
+## Known limitations
+
+This is a learning project and is not meant for production. In particular, the administrator password is compared in plain text (the `bcrypt` dependency is not wired in) and `express-session` is imported but never mounted, so the admin login/dashboard flow is incomplete.
+
+## Context
+
+Personal / school project built in June 2023 while learning full-stack JavaScript. It is kept as a portfolio piece and is no longer actively developed.
 
 ## Contributing
-Contributions to the project are welcome. If you would like to contribute, please follow these steps:
 
-Fork the repository on GitHub.
-Clone your forked repository to your local machine.
-Create a new branch with a descriptive name for your feature/fix.
-Make necessary changes and commit them.
-Push your changes to your forked repository.
-Submit a pull request to the main repository.
-Please ensure your code follows the project's coding style and conventions. Additionally, include relevant details and tests for your changes.
+See [CONTRIBUTING.md](CONTRIBUTING.md) and the [Code of Conduct](CODE_OF_CONDUCT.md). Security issues: [SECURITY.md](SECURITY.md).
 
-## License
-This project is licensed under the MIT License.
+## License and credits
 
-##  Acknowledgments
-We would like to acknowledge the following resources and libraries used in this project:
-
-Bootstrap CSS: A popular CSS framework for building responsive and mobile-first websites.
-Font Awesome: A library of scalable vector icons that can be customized and styled with CSS.
-Normalize.css: A CSS file that normalizes styles across different browsers.
-Socket.IO: A JavaScript library for real-time communication between the browser and the server.
-
-## Note
-This README provides an overview of the banking management web application. For detailed code and implementation, please refer to the project files.
-
-## Contact
-
-Thank you for using the BanKing application! If you have any questions or need further assistance, please feel free to contact us.
+[MIT](LICENSE) © LaCobble. Built with [Express](https://expressjs.com/), [EJS](https://ejs.co/), [Mongoose](https://mongoosejs.com/), [Socket.IO](https://socket.io/), [Bootstrap](https://getbootstrap.com/) and [Font Awesome](https://fontawesome.com/).
